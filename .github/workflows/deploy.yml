@@ -1,0 +1,33 @@
+name: Deploy Web Application to AWS EC2
+
+on:
+  push:
+    branches:
+      - deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Executing remote ssh commands to deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script: |
+            # Entrar a la carpeta del proyecto dentro del servidor de AWS
+            cd /home/ec2-user/evaluacion-ep2-innovatec
+            
+            # Limpiar cualquier cambio local si existiera y traer lo último de GitHub
+            git fetch --all
+            git reset --hard origin/deploy
+            git pull origin deploy
+            
+            # Re-levantar y compilar los contenedores con el código actualizado
+            docker-compose up -d --build
