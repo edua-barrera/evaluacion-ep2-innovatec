@@ -29,7 +29,7 @@ services:
       - DB_HOST=db
       - DB_PORT=3306
       - DB_NAME=innovatech_db
-      - DB_USER=root
+      - DB_USERNAME=root
       - DB_PASSWORD=admin123
     depends_on:
       - db
@@ -49,7 +49,7 @@ services:
       - DB_HOST=db
       - DB_PORT=3306
       - DB_NAME=innovatech_db
-      - DB_USER=root
+      - DB_USERNAME=root
       - DB_PASSWORD=admin123
     depends_on:
       - db
