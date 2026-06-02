@@ -1,11 +1,14 @@
 # Node / React
 **/node_modules/
 **/dist/
+**/build/
 
 # Java / Spring Boot
 **/target/
 **.class
 **.jar
 
-# Sistemas operativos
+# Sistemas operativos y otros
 **.DS_Store
+*.log
+.env
